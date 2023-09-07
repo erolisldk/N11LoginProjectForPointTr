@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {
-        "pretty",//raporlarin daha okunakli olmasi icin
+        "pretty",
         "html:target/default-cucumber-reports.html",
         "json:target/json-reports/cucumber.json",
         "junit:target/xml-report/cucumber.xml" ,
@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
         monochrome=true, //raporlarin consolda okunakli sekilde cikmasi icin
         features = "./src/test/resources/features",  //features folder path
         glue = {"stepDefinitions","hooks"},//stepdefinitions path
-        tags = "US08TC02",
+        tags = "@SuccesfullyLogin",
         dryRun = false
 )
 

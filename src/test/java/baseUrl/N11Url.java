@@ -5,12 +5,12 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.Before;
 import utilities.Authentication;
 
-class AutomationExerciseUrl extends Authentication {
+class N11Url extends Authentication {
 
 protected RequestSpecification spec;
 
 @Before
 public void setup() {
-   spec = new RequestSpecBuilder().setBaseUri("https://managementonschools.com").build();
+   spec = new RequestSpecBuilder().setBaseUri("https://www.n11.com/").build();
 }
 }

@@ -12,17 +12,10 @@ import utilities.Driver;
 
 public class Hooks {
 
-    // Cucumber'da feature ve stepdefinitions eslesmesi class seviyesinde degil
-    // package seviyesindedir
-    // dolayisiyla @Before ve @After stepdefinitions packagesi altinda herhangibir yerde olabilir
-    // ancak uygulamada genellikle Hooks isminde bir class olusturup onun icinde konulur
-
-
-
     RequestSpecification spec;
-    @Before(value = "@us01")
+    @Before(value = "@SuccesfullyLogin")
     public void setUp(){
-        spec = new RequestSpecBuilder().setBaseUri("https://automationexercise.com/").build();
+        spec = new RequestSpecBuilder().setBaseUri("https://www.n11.com/").build();
     }
 
     @After
