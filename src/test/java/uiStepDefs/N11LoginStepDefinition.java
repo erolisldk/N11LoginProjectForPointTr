@@ -5,6 +5,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import pages.N11Pages.N11Pages;
 import utilities.ConfigReader;
 import utilities.Driver;
@@ -12,11 +14,10 @@ import utilities.ReusableMethods;
 import java.io.IOException;
 import static org.junit.Assert.assertTrue;
 
-public class N11StepDefinition {
+public class N11LoginStepDefinition {
 
     N11Pages n11Pages = new N11Pages();
-    Logger logger = org.apache.logging.log4j.LogManager.getLogger(N11StepDefinition.class);
-    Logger logger2 = org.apache.logging.log4j.LogManager.getLogger(N11StepDefinition.class);
+    Logger logger = org.apache.logging.log4j.LogManager.getLogger(N11LoginStepDefinition.class);
 
 
     @Given("User goes to {string}")
@@ -60,11 +61,13 @@ public class N11StepDefinition {
 
     @And("User closes driver")
     public void userClosesDriver() {
-        Driver.closeDriver();
+        Driver.quitDriver();
     }
 
     @Then("User enters an false username, password and then is logged in")
     public void userEntersAnFalseUsernamePasswordAndThenIsLoggedIn() {
+        ReusableMethods.waitForPageToLoad(15);
+        n11Pages.epostaAdresi.clear();
         n11Pages.epostaAdresi.sendKeys(ConfigReader.getProperty("FalseUsername"), Keys.TAB, ConfigReader.getProperty("FalsePassword"));
         ReusableMethods.jsExecutorClick(n11Pages.girisYapButton);
         assertTrue(n11Pages.errorText.isDisplayed());
@@ -73,7 +76,9 @@ public class N11StepDefinition {
     @And("User takes screenshot of error message as full screen")
     public void userTakesScreenshotOfErrorMessageasFullScreen() throws IOException {
 
-        ReusableMethods.getScreenshot("ErrorMessage_Page");
+        ReusableMethods.jsExecutorScrool(n11Pages.errorText);
+        ReusableMethods.getScreenshot("ErrorMessage");
+
     }
 
 
@@ -102,11 +107,6 @@ public class N11StepDefinition {
         ReusableMethods.getScreenshot("Succesfull_Search");
     }
 
-    @And("User logs successful search process to results.txt")
-    public void userLogsSuccessfulSearchProcessToResultsTxt() {
-        logger2.info("User searchs " + ConfigReader.getProperty("SearchTerm1")+ " succesfully");
-    }
-
     @Then("User cliks to searchBox and writes invalid keyword")
     public void userCliksToSearchBoxAndWritesInvalidKeyword() {
         n11Pages.searchBox.sendKeys(ConfigReader.getProperty("SearchTerm2"),Keys.ENTER);
@@ -117,14 +117,9 @@ public class N11StepDefinition {
         assertTrue(n11Pages.notFoundText.isDisplayed());
     }
 
-    @Then("User takes screenshot of unsuccessfull search")
-    public void userTakesScreenshotOfUnsuccessfullSearch() throws IOException {
-        ReusableMethods.getScreenshot("Unsuccesfull_Search");
-    }
-
     @And("User logs unsuccessful search process to results.txt")
     public void userLogsUnsuccessfulSearchProcessToResultsTxt() {
-        logger2.info("User doesn't search " + ConfigReader.getProperty("SearchTerm2")+ " succesfully");
+        logger.info("User doesn't search " + ConfigReader.getProperty("SearchTerm2")+ " succesfully");
     }
 
 

@@ -22,7 +22,7 @@ import static org.junit.Assert.assertTrue;
 
 public class Driver {
 
-    private Driver() {
+    public Driver() {
 
     }
     static int timeout = 5;

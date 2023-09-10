@@ -22,4 +22,5 @@ Feature: Search a Keyword
     Then user checks whether the search process has been uncompleted
     Then User takes screenshot of unsuccessfull search
     And User logs unsuccessful search process to results.txt
+    And User closes driver
 

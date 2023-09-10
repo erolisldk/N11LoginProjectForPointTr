@@ -17,7 +17,7 @@ Feature: Login to N11
     Then User waits 2 seconds
     Then The user checks if the logout has been completed successfully.
     And User takes screenshot of full screen for successful logout
-    And User closes driver
+
 
 
   @UnSuccesfulLogin
