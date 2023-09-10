@@ -7,20 +7,17 @@ import org.junit.runner.RunWith;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(
-        plugin = {
-        "pretty",
+@CucumberOptions( plugin = { "pretty",
         "html:target/default-cucumber-reports.html",
         "json:target/json-reports/cucumber.json",
         "junit:target/xml-report/cucumber.xml" ,
-        "rerun:target/failed_scenarios.txt",
-        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
-        },
-        monochrome=true, //raporlarin consolda okunakli sekilde cikmasi icin
-        features = "./src/test/resources/features",  //features folder path
-        glue = {"stepDefinitions","hooks"},//stepdefinitions path
-        tags = "@SuccesfullyLogin",
-        dryRun = false
+        "rerun:target/failed_scenarios.txt"},
+
+        features = "src/test/resources/features/uiFeatures",
+        glue = {"uiStepDefs"},
+        tags = "@N11",
+        dryRun = false,
+        monochrome=true
 )
 
 public class Runner {

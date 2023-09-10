@@ -13,16 +13,16 @@ import utilities.Driver;
 public class Hooks {
 
     RequestSpecification spec;
-    @Before(value = "@SuccesfullyLogin")
+    @Before()
     public void setUp(){
         spec = new RequestSpecBuilder().setBaseUri("https://www.n11.com/").build();
     }
 
     @After
     public void tearDown(Scenario scenario){
-        final byte[] screenshot=((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+        final byte[] failedScreenshot=((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
         if (scenario.isFailed()) {
-            scenario.attach(screenshot, "image/png","screenshots");
+            scenario.attach(failedScreenshot, "image/png","failedScenario" + scenario.getName());
         }
         Driver.closeDriver();
     }

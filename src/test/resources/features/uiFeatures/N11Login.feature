@@ -1,21 +1,29 @@
-@N11Login
-Feature: Succesfully login to N11
+@N11
+Feature: Login to N11
 
-  @N11SuccesfulLogin
-  Scenario: Succesfully login to N11
+  Background: Login to N11
     Given User goes to "url"
     Then User waits 3 seconds
     Then User clicks to girisYap button
+    And User waits 3 seconds
+
+  @SuccesfulLogin
+  Scenario: Succesfully login and logout to N11
     Then User enters an username, password and then is logged in.
     Then User waits 3 seconds
     Then The user checks if the login has been completed successfully.
     And User takes screenshot of full screen
+    Then User logouts the page
+    Then User waits 2 seconds
+    Then The user checks if the logout has been completed successfully.
+    And User takes screenshot of full screen for successful logout
+    And User closes driver
 
-  @N11UnSuccesfulLogin
+
+  @UnSuccesfulLogin
   Scenario: Unsuccesful login to N11
-    Given User goes to "url"
-    Then User waits 3 seconds
-    Then User clicks to girisYap button
     Then User enters an false username, password and then is logged in
-    And User takes screenshot of error message and full screen
+    Then User waits 3 seconds
+    Then User takes screenshot of error message as full screen
+    And User logs unsuccessful login attempt and logs error message to loginerror.txt
 
