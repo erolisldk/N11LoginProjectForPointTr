@@ -12,12 +12,9 @@ The test execution is managed through the Runner class, which runs both the Logi
 You can find the Runner class here:
 
 Runner (Location: src/test/java/runners/Runner.java)
-If you wish to run a specific scenario or modify the test configuration, you can use the Runner1 class.
-Modify the 'tags' parameter as needed and run the following class:
+If you wish to run a specific scenario or modify the test configuration, you can use the specific tags.
+Modify the 'tags' parameter as needed and run the needed scnerioa or feature.
 
-Runner1 (Location: src/test/java/runners/Runner1.java)
-Viewing Test Results
-After running the test, you can access the following artifacts:
 
 Screenshots: Screenshots taken during the test execution are stored in the test-output/Screenshots directory.
 

@@ -17,8 +17,7 @@ Feature: Login to N11
     Then User waits 2 seconds
     Then The user checks if the logout has been completed successfully.
     And User takes screenshot of full screen for successful logout
-
-
+    And User closes driver
 
   @UnSuccesfulLogin
   Scenario: Unsuccesful login to N11
@@ -26,4 +25,5 @@ Feature: Login to N11
     Then User waits 3 seconds
     Then User takes screenshot of error message as full screen
     And User logs unsuccessful login attempt and logs error message to loginerror.txt
+    And User closes driver
 
