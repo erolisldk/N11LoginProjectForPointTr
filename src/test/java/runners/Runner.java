@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 
         features = "src/test/resources/features/uiFeatures",
         glue = {"uiStepDefs"},
-        tags = "@N11",
+        tags = "@UnSuccesfulLogin",
         dryRun = false,
         monochrome=true
 )

@@ -1,32 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
-    <Appenders>
-        <!-- First File Appender for loginerror.txt -->
-        <File name="LoginErrorFile" fileName="loginerror-${date:dd-MM-yyyy_HHmmss}.txt" append="true">
-            <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss} %-5level %c %m%n" />
-        </File>
-
-        <!-- Second File Appender for result.txt -->
-        <File name="ResultFile" fileName="result-${date:dd-MM-yyyy_HHmmss}.txt" append="true">
-            <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss} %-5level %c %m%n" />
-        </File>
-
-        <!-- Console Appender -->
+    <Appenders><!--Log kayıtlarını Consola yazdırır -->
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </Console>
+        <File name="File" fileName="login_error-${date:dd-MM-yyyy_HHmmss}.txt" append="true"><!--Logları test çalışırken ekler -->
+            <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss} %-5level %c %m%n" />
+        </File>
     </Appenders>
-
-    <Loggers>
+    <Loggers><!--Hangi seviyede loglama yapılacağı belirtilir -->
         <Root level="INFO">
-            <!-- Reference the Console and LoginErrorFile Appenders for the Root Logger -->
             <AppenderRef ref="Console" />
-            <AppenderRef ref="LoginErrorFile" />
+            <AppenderRef ref="File" />
         </Root>
-
-        <!-- Logger for "result.txt" -->
-        <Logger name="com.example.result" level="INFO" additivity="false">
-            <AppenderRef ref="ResultFile" />
-        </Logger>
     </Loggers>
 </Configuration>

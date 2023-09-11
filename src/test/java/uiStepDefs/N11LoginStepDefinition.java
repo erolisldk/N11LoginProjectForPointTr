@@ -74,10 +74,7 @@ public class N11LoginStepDefinition {
     public void userEntersAnFalseUsernamePasswordAndThenIsLoggedIn() {
         ReusableMethods.waitForPageToLoad(15);
         n11Pages.epostaAdresi.clear();
-        n11Pages.epostaAdresi.sendKeys(ConfigReader.getProperty("FalseUsername"), Keys.TAB, ConfigReader.getProperty("FalsePassword"));
-        ReusableMethods.waitFor(2);
-        //n11Pages.epostaAdresi.submit();
-        ReusableMethods.jsExecutorClick(n11Pages.girisYapButton);
+        n11Pages.epostaAdresi.sendKeys(ConfigReader.getProperty("FalseUsername"), Keys.TAB, ConfigReader.getProperty("FalsePassword"), Keys.ENTER);
         assertTrue(n11Pages.errorText.isDisplayed());
         logger.error("Trying to log in with an invalid email.");
     }
@@ -131,7 +128,6 @@ public class N11LoginStepDefinition {
     public void userLogsUnsuccessfulSearchProcessToResultsTxt() {
         logger.info("User doesn't search " + ConfigReader.getProperty("SearchTerm2") + " succesfully");
     }
-
 
 }
 

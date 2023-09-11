@@ -3,7 +3,6 @@ Feature: Login to N11
 
   Background: Login to N11
     Given User goes to "url"
-    Then User waits 3 seconds
     Then User clicks to girisYap button
     And User waits 3 seconds
 

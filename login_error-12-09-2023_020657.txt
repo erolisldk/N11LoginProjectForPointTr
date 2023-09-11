@@ -1,0 +1,2 @@
+12.09.2023 02:07:15 ERROR uiStepDefs.N11LoginStepDefinition Trying to log in with an invalid email.
+12.09.2023 02:07:18 ERROR uiStepDefs.N11LoginStepDefinition It gives 'E-posta adresiniz veya şifreniz hatalı' alert.
