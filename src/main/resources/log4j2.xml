@@ -8,6 +8,7 @@
             <PatternLayout pattern="%d{dd.MM.yyyy HH:mm:ss} %-5level %c %m%n" />
         </File>
     </Appenders>
+
     <Loggers>
         <Root level="INFO">
             <AppenderRef ref="Console" />

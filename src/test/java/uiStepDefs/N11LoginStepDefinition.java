@@ -3,6 +3,7 @@ package uiStepDefs;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -11,28 +12,32 @@ import pages.N11Pages.N11Pages;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
+
 import java.io.IOException;
+
 import static org.junit.Assert.assertTrue;
 
 public class N11LoginStepDefinition {
 
     N11Pages n11Pages = new N11Pages();
-    Logger logger = org.apache.logging.log4j.LogManager.getLogger(N11LoginStepDefinition.class);
-
+    Logger logger = LogManager.getLogger(N11LoginStepDefinition.class);
 
     @Given("User goes to {string}")
     public void userGoesTo(String url) {
         Driver.getDriver().get(ConfigReader.getProperty("url"));
     }
+
     @Then("User clicks to girisYap button")
     public void userClicksToGirisYapButton() {
         ReusableMethods.jsExecutorClick(n11Pages.girisYap);
     }
+
     @Then("User enters an username, password and then is logged in.")
     public void userEntersAnUsernamePasswordAndThenIsLoggedIn() {
         n11Pages.epostaAdresi.sendKeys(ConfigReader.getProperty("Username"), Keys.TAB, ConfigReader.getProperty("Password"),
                 Keys.ENTER);
     }
+
     @Then("User waits {int} seconds")
     public void userWaitsSeconds(int seconds) {
         ReusableMethods.waitFor(seconds);
@@ -44,6 +49,7 @@ public class N11LoginStepDefinition {
 
 
     }
+
     @And("User takes screenshot of full screen")
     public void userTakesScreenshotOfFullScreen() throws IOException {
         ReusableMethods.getScreenshot("N11SuccesfullLogin");
@@ -69,10 +75,13 @@ public class N11LoginStepDefinition {
         ReusableMethods.waitForPageToLoad(15);
         n11Pages.epostaAdresi.clear();
         n11Pages.epostaAdresi.sendKeys(ConfigReader.getProperty("FalseUsername"), Keys.TAB, ConfigReader.getProperty("FalsePassword"));
-        ReusableMethods.jsExecutorClick(n11Pages.girisYapButton);
+        ReusableMethods.waitFor(2);
+        n11Pages.epostaAdresi.submit();
+        //ReusableMethods.jsExecutorClick(n11Pages.girisYapButton);
         assertTrue(n11Pages.errorText.isDisplayed());
         logger.info("Trying to log in with an invalid email.");
     }
+
     @And("User takes screenshot of error message as full screen")
     public void userTakesScreenshotOfErrorMessageasFullScreen() throws IOException {
 
@@ -90,11 +99,13 @@ public class N11LoginStepDefinition {
     @And("User logs unsuccessful login attempt and logs error message to loginerror.txt")
     public void userLogsUnsuccessfulLoginAttemptAndLogsErrorMessageToLoginerrorTxt() {
         logger.error("It gives 'E-posta adresiniz veya şifreniz hatalı' alert.");
+
+
     }
 
     @Then("User cliks to searchBox and writes valid keyword")
     public void userCliksToSearchBoxAndWrites() {
-        n11Pages.searchBox.sendKeys(ConfigReader.getProperty("SearchTerm1"),Keys.ENTER);
+        n11Pages.searchBox.sendKeys(ConfigReader.getProperty("SearchTerm1"), Keys.ENTER);
     }
 
     @Then("user checks whether the search process has been completed successfully.")
@@ -109,7 +120,7 @@ public class N11LoginStepDefinition {
 
     @Then("User cliks to searchBox and writes invalid keyword")
     public void userCliksToSearchBoxAndWritesInvalidKeyword() {
-        n11Pages.searchBox.sendKeys(ConfigReader.getProperty("SearchTerm2"),Keys.ENTER);
+        n11Pages.searchBox.sendKeys(ConfigReader.getProperty("SearchTerm2"), Keys.ENTER);
     }
 
     @Then("user checks whether the search process has been uncompleted")
@@ -119,9 +130,8 @@ public class N11LoginStepDefinition {
 
     @And("User logs unsuccessful search process to results.txt")
     public void userLogsUnsuccessfulSearchProcessToResultsTxt() {
-        logger.info("User doesn't search " + ConfigReader.getProperty("SearchTerm2")+ " succesfully");
+        logger.info("User doesn't search " + ConfigReader.getProperty("SearchTerm2") + " succesfully");
     }
-
 
 
 }
